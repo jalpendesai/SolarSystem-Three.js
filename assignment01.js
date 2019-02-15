@@ -46,11 +46,16 @@ var earth_Moon,
 
 //  Moon Distance from their planet
     var earth_Moon_Distance     = 0.3844;
+
     var jupiter_Moon1_Distance  = 0.422;
     var jupiter_Moon2_Distance  = 0.671;
     var jupiter_Moon3_Distance  = 1.07;
     var jupiter_Moon4_Distance  = 1.883;
     var jupiter_Moon5_Distance  = 1.813;
+
+    var saturn_Moon1_Distance   = 0.1855;
+    var saturn_Moon2_Distance   = 0.2382;
+    var saturn_Moon3_Distance   = 0.2946; 
 
 //  ------------RADIUS--------------
 // Radius of planets = Diameter/2
@@ -69,11 +74,16 @@ var earth_Moon,
 
 //  Radius of Moons
     var earth_Moon_Radius   = 0.17375;
+
     var jupiter_Moon1_Radius= 0.1815;
     var jupiter_Moon2_Radius= 0.1565;
     var jupiter_Moon3_Radius= 0.2634;
     var jupiter_Moon4_Radius= 0.2403;
     var jupiter_Moon5_Radius= 0.0131;
+
+    var saturn_Moon1_Radius = 0.0196;
+    var saturn_Moon2_Radius = 0.0249;
+    var saturn_Moon3_Radius = 0.053;
 
 //  -----------VELOCITY---------------
 //  Orbit Velocity (around the Sun)
@@ -90,11 +100,16 @@ var earth_Moon,
 
 //  Velocity of Moons
     var earth_Moon_Velocity     = 0.01 / 2;
+
     var jupiter_Moon1_Velocity  = 0.01769 / 2;
     var jupiter_Moon2_Velocity  = 0.03551 /2;
     var jupiter_Moon3_Velocity  = 0.07155 /2;
     var jupiter_Moon4_Velocity  = 0.16689 /2;
     var jupiter_Moon5_Velocity  = 0.004981 /2;
+
+    var saturn_Moon1_Velocity   = 0.00942 /2;
+    var saturn_Moon2_Velocity   = 0.0137 /2;
+    var saturn_Moon3_Velocity   = 0.01887 /2;  
 
 // Axis Velocity
 
@@ -123,19 +138,26 @@ camera  = new THREE.PerspectiveCamera(
     0.1,
     1000);
 
-camera.position.x   = 0;
-camera.position.y   = -60;
-camera.position.z   = 0.1;
+camera.position.x   = -1;
+camera.position.y   = -80;
+camera.position.z   = 90;
 
 camera.lookAt(scene.position);
 
+//Load background texture
+// var loader = new THREE.TextureLoader();
+// loader.load('https://wallpapercave.com/wp/ulmAl47.jpg' , function(texture)
+//             {
+//              scene.background = texture;  
+//             });
+
 // Lights
    
-var ambient = new THREE.AmbientLight(0xfcfc00,0.02);
+var ambient = new THREE.AmbientLight(0xffffff,0.02);
 ambient.castShadow = true;
 scene.add(ambient);
 
-var pointLight = new THREE.PointLight(0xfcfc00,10,1000);
+var pointLight = new THREE.PointLight(0xfcfc00,15,100);
 pointLight.position.set(0,0,0);
 pointLight.castShadow = true;
 scene.add(pointLight);
@@ -182,28 +204,28 @@ scene.add(sun);
 
 //  --------Planets----------
 mercury = new THREE.Object3D();
-addPlanet(mercury,mercury_Radius,0x0061ff,sun_Radius + mercury_Distance);
+addPlanet(mercury,mercury_Radius,0x564f4f,sun_Radius + mercury_Distance);
 
 venus = new THREE.Object3D();
-addPlanet(venus,venus_Radius,0xff512d,sun_Radius + venus_Distance);
+addPlanet(venus,venus_Radius,0xc1b347,sun_Radius + venus_Distance);
 
 earth = new THREE.Object3D();
-addPlanet(earth,earth_Radius,0x0048ff,sun_Radius + earth_Distance);
+addPlanet(earth,earth_Radius,0x256dba,sun_Radius + earth_Distance);
 
 mars = new THREE.Object3D();
-addPlanet(mars,mars_Radius,0xff512d,sun_Radius + mars_Distance);
+addPlanet(mars,mars_Radius,0x2d0000,sun_Radius + mars_Distance);
 
 jupiter = new THREE.Object3D();
 addPlanet(jupiter,jupiter_Radius,0xff512d,sun_Radius + jupiter_Distance);
 
 saturn = new THREE.Object3D();
-addPlanet(saturn,saturn_Radius,0xff512d,sun_Radius + saturn_Distance);
+addPlanet(saturn,saturn_Radius,0xbf6b05,sun_Radius + saturn_Distance);
 
 uranus = new THREE.Object3D();
-addPlanet(uranus,uranus_Radius,0xff512d,sun_Radius + uranus_Distance);
+addPlanet(uranus,uranus_Radius,0xbfa005,sun_Radius + uranus_Distance);
 
 neptune = new THREE.Object3D();
-addPlanet(neptune,neptune_Radius,0xff512d,sun_Radius + neptune_Distance);
+addPlanet(neptune,neptune_Radius,0xbfa005,sun_Radius + neptune_Distance);
 
 pluto = new THREE.Object3D();
 addPlanet(pluto,pluto_Radius,0xff512d,sun_Radius + pluto_Distance);
@@ -243,7 +265,20 @@ addPlanet(jupiter_Moon5,jupiter_Moon5_Radius, 0x0045ff, jupiter_Radius + jupiter
 jupiter.add(jupiter_Moon5);
 
 //  Saturn_Moon
+saturn_Moon1 = new THREE.Object3D();
+saturn_Moon1.position.set(sun_Radius + saturn_Distance,0,0);
+addPlanet(saturn_Moon1,saturn_Moon1_Radius, 0x0045ff, saturn_Radius + saturn_Moon1_Distance);
+saturn.add(saturn_Moon1);
 
+saturn_Moon2 = new THREE.Object3D();
+saturn_Moon2.position.set(sun_Radius + saturn_Distance,0,0);
+addPlanet(saturn_Moon2,saturn_Moon2_Radius, 0x0045ff, saturn_Radius + saturn_Moon2_Distance);
+saturn.add(saturn_Moon2);
+
+saturn_Moon3 = new THREE.Object3D();
+saturn_Moon3.position.set(sun_Radius + saturn_Distance,0,0);
+addPlanet(saturn_Moon3,saturn_Moon3_Radius, 0x0045ff, saturn_Radius + saturn_Moon3_Distance);
+saturn.add(saturn_Moon3);
 
 // moonTest1 = new THREE.Object3D();
 // moonTest1.position.set(20,0,0);
@@ -252,26 +287,28 @@ jupiter.add(jupiter_Moon5);
 
 }
 
-function addPlanet(obj, planet_Size, planet_Color, distanceFromSun ){
+function addPlanet(obj, planet_Size, planet_Color, distanceFromSun){
+    
     let geoPlanet = new THREE.SphereGeometry(planet_Size,32,32);
-    let matPlanet = new THREE.MeshLambertMaterial({color: planet_Color});
+    let matPlanet = new THREE.MeshLambertMaterial({color: planet_Color, emissive: planet_Color, emissiveIntensity: 1.5});
     let planet = new THREE.Mesh(geoPlanet, matPlanet);
     planet.position.set(distanceFromSun,0,0);
     planet.castShadow = true;
     planet.receiveShadow = true;
 
+    let geoRing = new THREE.RingGeometry(distanceFromSun,distanceFromSun + 0.1,32);
+    let matRing = new THREE.MeshBasicMaterial({color: 0xe8e8e8, side: THREE.DoubleSide});
+    let ring    = new THREE.Mesh(geoRing, matRing);
+    scene.add(ring);
+
     obj.add(planet);
     scene.add(obj);
 
+
 }
 
-
-function render(){
-// planetRotation();
-trackballControl.update(clock.getDelta());
-renderer.render(scene,camera);
-
-mercury.rotation.z  += mercury_Velocity * planetSpeed;
+function planetRotation(){
+    mercury.rotation.z  += mercury_Velocity * planetSpeed;
 venus.rotation.z    += venus_Velocity * planetSpeed;
 earth.rotation.z    += earth_Velocity * planetSpeed;
 mars.rotation.z     += mars_Velocity * planetSpeed;
@@ -283,13 +320,25 @@ pluto.rotation.z    += pluto_Velocity * planetSpeed;
 
 //  Moon Velocity
 earth_Moon.rotation.y       += earth_Moon_Velocity * moonSpeed;
+
 jupiter_Moon1.rotation.y    += jupiter_Moon1_Velocity * moonSpeed;
 jupiter_Moon2.rotation.y    += jupiter_Moon2_Velocity * moonSpeed;
 jupiter_Moon3.rotation.y    += jupiter_Moon3_Velocity * moonSpeed;
 jupiter_Moon4.rotation.y    += jupiter_Moon4_Velocity * moonSpeed;
 jupiter_Moon5.rotation.y    += jupiter_Moon5_Velocity * moonSpeed;
 
+saturn_Moon1.rotation.y     += saturn_Moon1_Velocity * moonSpeed;
+saturn_Moon2.rotation.y     += saturn_Moon2_Velocity * moonSpeed;
+saturn_Moon3.rotation.y     += saturn_Moon3_Velocity * moonSpeed;
+
 // moonTest1.rotation.y += 0.01;
+}
+
+function render(){
+
+trackballControl.update(clock.getDelta());
+renderer.render(scene,camera);
+planetRotation();
 requestAnimationFrame(render);
 }
 
