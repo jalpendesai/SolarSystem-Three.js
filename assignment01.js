@@ -6,7 +6,7 @@ trackballControl,
 clock
 ;
 
-var planet1, planet2,planet3, moonTest1,moonTest2;
+var moonTest1,moonTest2;
 
 //  Planets
 var mercury,
@@ -19,6 +19,18 @@ var mercury,
     neptune,
     pluto;
 
+//  Moons
+var earth_Moon,
+
+    jupiter_Moon1,
+    jupiter_Moon2,
+    jupiter_Moon3,
+    jupiter_Moon4,
+    jupiter_Moon5,
+
+    saturn_Moon1,
+    saturn_Moon2,
+    saturn_Moon3;
 
 //  Distance from Sun
     //  Formula : Mercury_Distance = (57.9 x 10^6)/(10^7)
@@ -108,6 +120,8 @@ trackballControl = new THREE.TrackballControls(camera, renderer.domElement);
 // Custom Inspectper Setting up
 function customInspector(){
 
+    // Adjusting the speed to rotation of the planets around the sun
+    // Adjusting the orbiting speeds of the moons
 }
 
 //  Creating planet Geometry
@@ -170,6 +184,7 @@ function addPlanet(obj, planet_Size, planet_Color, distanceFromSun ){
     scene.add(obj);
 
 }
+
 
 function render(){
 // planetRotation();
